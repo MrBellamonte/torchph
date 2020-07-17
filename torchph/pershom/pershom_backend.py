@@ -249,6 +249,7 @@ def vr_persistence_l1(
         ``ret[1][n]`` are birth-*values* of essential classes of
         dimension ``n``.
     """
+    return 0
     return __C.VRCompCuda__vr_persistence_l1(
         point_cloud,
         max_dimension,
