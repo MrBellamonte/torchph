@@ -738,7 +738,7 @@ std::vector<std::vector<Tensor>> calculate_persistence_output_to_barcode_tensors
         Tensor birth_death_i, births, birth_i, deaths, death_i, barcodes, i_birth_ne_death; 
         for (int i = 0; i < non_essentials.size(); i++){
 
-            birth_death_i = non_essentials.at(i); 
+            birth_death_i = non_essentials.at(i);
 
             if(birth_death_i.numel() == 0){
                 barcodes = torch::empty({0, 2}, filtration_values.options()); 
@@ -796,16 +796,16 @@ std::vector<std::vector<Tensor>> vr_persistence(
     int64_t max_dimension, 
     double max_ball_diameter){    
     
-    std::vector<std::vector<Tensor>> ret; 
+    std::vector<std::vector<Tensor>> ret;
     auto args_generator = VietorisRipsArgsGenerator();
 
     auto args = args_generator(distance_matrix, max_dimension, max_ball_diameter);
-    
+
     auto pers = CalcPersCuda::calculate_persistence(
         args.at(0), args.at(1), args.at(2), max_dimension, -1
     );
 
-    auto filtration_values = args.at(3); 
+    auto filtration_values = args.at(3);
     ret = calculate_persistence_output_to_barcode_tensors(pers, filtration_values); 
 
     return ret;
@@ -818,7 +818,7 @@ std::vector<std::vector<Tensor>> vr_persistence_l1(
     double max_ball_diameter){
 
     auto distance_matrix = l1_norm_distance_matrix(point_cloud);
-    
+
     return vr_persistence(distance_matrix, max_dimension, max_ball_diameter);
 }
 
